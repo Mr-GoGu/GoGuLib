@@ -7,40 +7,32 @@
   },
   "configurePresets": [
     {
-      "name": "windows-debug",
+      "name": "debug",
       "hidden": false,
-      "description": "Windows with MSVC in Debug mode",
+      "description": "Debug mode",
       "binaryDir": "${sourceDir}/build",
       "cacheVariables": {
-        "CMAKE_TOOLCHAIN_FILE": "${sourceDir}/package/scripts/buildsystems/vcpkg.cmake",
-        "CMAKE_BUILD_TYPE": "Debug",
-        "OPENXLSX_BUILD_DEMOS": "OFF",
-        "OPENXLSX_BUILD_DOCS": "OFF",
-        "OPENXLSX_BUILD_TESTS": "OFF"
+        "CMAKE_BUILD_TYPE": "Debug"
       }
     },
     {
-      "name": "windows-release",
+      "name": "release",
       "hidden": false,
-      "description": "Windows with MSVC in Release mode",
+      "description": "Release mode",
       "binaryDir": "${sourceDir}/build",
       "cacheVariables": {
-        "CMAKE_TOOLCHAIN_FILE": "${sourceDir}/package/scripts/buildsystems/vcpkg.cmake",
-        "CMAKE_BUILD_TYPE": "Release",
-        "OPENXLSX_BUILD_DEMOS": "OFF",
-        "OPENXLSX_BUILD_DOCS": "OFF",
-        "OPENXLSX_BUILD_TESTS": "OFF"
+        "CMAKE_BUILD_TYPE": "Release"
       }
     }
   ],
   "buildPresets": [
     {
-      "name": "windows-debug",
-      "configurePreset": "windows-debug"
+      "name": "debug",
+      "configurePreset": "debug"
     },
     {
-      "name": "windows-release",
-      "configurePreset": "windows-release"
+      "name": "release",
+      "configurePreset": "release"
     }
   ]
 }
