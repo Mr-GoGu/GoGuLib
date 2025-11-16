@@ -7,6 +7,11 @@ namespace fs = std::filesystem;
 namespace GGL
 {
 
+std::string getColor(Color color)
+{
+    return "\033[" + std::to_string(static_cast<int>(color)) + "m";
+}
+
 std::string getTimeFormat(std::string format)
 {
     std::time_t now = std::time(nullptr);

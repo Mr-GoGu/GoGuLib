@@ -22,8 +22,12 @@ set(LIB_SRC_FILES
     ${SRC_DIR}/Process.cpp
     ${SRC_DIR}/String.cpp
     ${SRC_DIR}/Temp.cpp
+    ${SRC_DIR}/Debug.cpp
 )
 
-add_library(${LIB_NAME} ${LIB_SRC_FILES})
+add_library(${LIB_NAME} STATIC ${LIB_SRC_FILES} ${INC_DIR}/GoGuLib.hpp)
 
-target_include_directories(${LIB_NAME} PRIVATE include)
+target_include_directories(${LIB_NAME} PUBLIC ${INC_DIR})
+
+enable_testing()
+add_subdirectory(tests)
