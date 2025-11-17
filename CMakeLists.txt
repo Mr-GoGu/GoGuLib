@@ -1,6 +1,10 @@
 cmake_minimum_required(VERSION 3.30)
 project(GoGuLib)
 
+if (CMAKE_SOURCE_DIR STREQUAL PROJECT_SOURCE_DIR)
+    add_subdirectory(dependencies/dependencies.cmake)
+endif()
+
 #  INITIALIZATION
 # ------------------------------------------------------------------------------
 
@@ -28,6 +32,11 @@ set(LIB_SRC_FILES
 add_library(${LIB_NAME} STATIC ${LIB_SRC_FILES} ${INC_DIR}/GoGuLib.hpp)
 
 target_include_directories(${LIB_NAME} PUBLIC ${INC_DIR})
+
+target_link_libraries(${TEST_NAME}
+    PUBLIC
+        CURL::libcurl
+)
 
 enable_testing()
 add_subdirectory(tests)
