@@ -4,7 +4,7 @@ include(FetchContent)
 FetchContent_Declare(
     curl
     GIT_REPOSITORY https://github.com/curl/curl.git
-    GIT_TAG        curl-8_17_0
+    GIT_TAG        curl-8_11_0
 )
 FetchContent_MakeAvailable(curl)
 
