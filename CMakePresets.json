@@ -12,7 +12,8 @@
       "description": "Debug mode",
       "binaryDir": "${sourceDir}/build",
       "cacheVariables": {
-        "CMAKE_BUILD_TYPE": "Debug"
+        "CMAKE_BUILD_TYPE": "Debug",
+        "GOGULIB_BUILD_TESTS": true
       }
     },
     {
@@ -21,7 +22,8 @@
       "description": "Release mode",
       "binaryDir": "${sourceDir}/build",
       "cacheVariables": {
-        "CMAKE_BUILD_TYPE": "Release"
+        "CMAKE_BUILD_TYPE": "Release",
+        "GOGULIB_BUILD_TESTS": false
       }
     }
   ],

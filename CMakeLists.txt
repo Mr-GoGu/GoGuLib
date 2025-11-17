@@ -38,5 +38,7 @@ target_link_libraries(${LIB_NAME}
         CURL::libcurl
 )
 
-enable_testing()
-add_subdirectory(tests)
+if (DEFINED GOGULIB_BUILD_TESTS AND GOGULIB_BUILD_TESTS)
+    enable_testing()
+    add_subdirectory(tests)
+endif()

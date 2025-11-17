@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.30)
 project(GoGuLibTests)
 
-set(TEST_NAME "unit_tests")
+set(TEST_NAME "GoGuLib_UnitTests")
 
 include(CTest)
 
