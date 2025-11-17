@@ -6,7 +6,7 @@ FetchContent_Declare(
     GIT_REPOSITORY https://github.com/curl/curl.git
     GIT_TAG        curl-8_17_0
 )
-FetchContent_MakeAvailable(googletest)
+FetchContent_MakeAvailable(curl)
 
 FetchContent_Declare(
     googletest
