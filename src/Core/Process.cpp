@@ -1,5 +1,6 @@
 
-#include "GoGuLib.hpp"
+#include "Core/Function.hpp"
+#include "Core/Debug.hpp"
 
 namespace GGL
 {
@@ -28,8 +29,18 @@ void createProcess(std::string path)
         CloseHandle(pi.hThread);
         std::exit(EXIT_SUCCESS);
     } else {
-        MessageBoxA(nullptr, (std::string("Can't find ") + path).c_str(), "Error", MB_OK | MB_ICONERROR);
+        Error() << "Can't find " << path << end;
     }
+}
+
+void setTerminalColor()
+{
+    SetConsoleOutputCP(CP_UTF8);
+    HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
+    DWORD dwMode = 0;
+    GetConsoleMode(hOut, &dwMode);
+    dwMode |= ENABLE_VIRTUAL_TERMINAL_PROCESSING;
+    SetConsoleMode(hOut, dwMode);
 }
 
 #else

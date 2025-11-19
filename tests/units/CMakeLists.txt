@@ -1,9 +1,13 @@
 cmake_minimum_required(VERSION 3.30)
-project(GoGuLibTests)
+project(GoGuLibUnitTests)
+
+enable_testing()
 
 set(TEST_NAME "GoGuLib_UnitTests")
 
+set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
 include(CTest)
+find_package(GTest REQUIRED)
 
 set(TEST_SRC_FILES
     Tests.cpp
@@ -13,8 +17,8 @@ add_executable(${TEST_NAME} ${TEST_SRC_FILES})
 
 target_link_libraries(${TEST_NAME}
     PUBLIC
-        gtest_main
-        gmock
+        GTest::gtest
+        GTest::gtest_main
 )
 
 target_link_libraries(${TEST_NAME}
@@ -22,4 +26,5 @@ target_link_libraries(${TEST_NAME}
         GoGuLib
 )
 
-add_test(NAME ${TEST_NAME} COMMAND ${TEST_NAME})
+include(GoogleTest)
+gtest_discover_tests(${TEST_NAME})

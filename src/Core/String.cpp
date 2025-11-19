@@ -1,5 +1,5 @@
 
-#include "GoGuLib.hpp"
+#include "Core/Function.hpp"
 #include <sstream>
 #include <filesystem>
 
@@ -38,7 +38,7 @@ std::string stringToLower(std::string str)
 
 std::string getFullPath(std::string path)
 {
-    std::string fullPath = std::filesystem::current_path().string() + "/" + std::string(path);
+    std::string fullPath = std::filesystem::current_path().string() + '/' + std::string(path);
     std::replace(fullPath.begin(), fullPath.end(), '\\', '/');
     return fullPath;
 }

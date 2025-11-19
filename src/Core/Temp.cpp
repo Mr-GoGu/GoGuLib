@@ -1,5 +1,5 @@
 
-#include "GoGuLib.hpp"
+#include "Core/Function.hpp"
 #include <filesystem>
 
 namespace fs = std::filesystem;

@@ -1,12 +1,17 @@
 
 #pragma once
 
-#include "Random.hpp"
-#include "Singleton.hpp"
-#include "Exception.hpp"
-#include "ArgParser.hpp"
-#include "Debug.hpp"
-#include "Function.hpp"
+
+#include "Core/Debug.hpp"
+#include "Core/Exception.hpp"
+#include "Core/Function.hpp"
+#include "Core/Singleton.hpp"
+
+#include "Logic/ArgParser.hpp"
+#include "Logic/Random.hpp"
+
+#include "Network/Request.hpp"
+#include "Network/Updater.hpp"
 
 /*
 

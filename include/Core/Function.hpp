@@ -2,11 +2,14 @@
 #pragma once
 
 #include <iostream>
+#include <vector>
 
 namespace GGL
 {
 
-    #define DATE_FORMAT_DD_MM_YYYY      "dd/mm/yyyy"
+    #define DATE_FORMAT_DD_MM_YYYY      "%Y_%m_%d"
+    #define DATE_FORMAT_HH_MM_SS        "%H_%M_%S"
+    #define DATE_FORMAT_COMPLET         "%Y_%m_%d__%H_%M_%S"
 
 enum Color {
     NONE = 0,
@@ -28,6 +31,9 @@ std::string getFullPath(std::string path);;
 
 // Process
 void createProcess(std::string path);
+#if defined(_WIN32)
+void setTerminalColor();
+#endif
 
 // Temp
 std::string getTempDir();

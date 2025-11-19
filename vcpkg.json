@@ -1,0 +1,10 @@
+{
+    "name": "gogulib",
+    "version": "0.1.0",
+    "dependencies": [
+        "nlohmann-json",
+        "curl",
+        "minizip",
+        "gtest"
+    ]
+}
