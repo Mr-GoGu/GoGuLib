@@ -14,7 +14,6 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${BIN_DIR})
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${BIN_DIR})
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${BIN_DIR})
 
-set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
 if (NOT DEFINED CMAKE_TOOLCHAIN_FILE)
     set(CMAKE_TOOLCHAIN_FILE "${CMAKE_CURRENT_SOURCE_DIR}/package/scripts/buildsystems/vcpkg.cmake" CACHE STRING "" FORCE)
 endif()
@@ -33,7 +32,8 @@ set(LIB_SRC_FILES
     ${SRC_DIR}/Network/Updater.cpp
 )
 
-add_library(${LIB_NAME} STATIC ${LIB_SRC_FILES} ${INC_DIR}/GoGuLib.hpp)
+add_library(${LIB_NAME} ${LIB_SRC_FILES} ${INC_DIR}/GoGuLib.hpp)
+add_library(${LIB_NAME}::${LIB_NAME} ALIAS ${LIB_NAME})
 
 target_include_directories(${LIB_NAME}
     PUBLIC
