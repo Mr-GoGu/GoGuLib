@@ -6,9 +6,11 @@
 namespace GGL
 {
 
+#if defined(GGL_DEBUG)
+
 Debug Log =     Debug(std::cout, "Info",    Color::BLUE,    DEBUG_SETTING_FILE | DEBUG_SETTING_LINE | DEBUG_SETTING_FUNC);
 Debug Warning = Debug(std::cout, "Warning", Color::YELLOW,  DEBUG_SETTING_FILE | DEBUG_SETTING_LINE | DEBUG_SETTING_FUNC);
-Debug Error =   Debug(std::cout, "Error",   Color::RED,     DEBUG_SETTING_FILE | DEBUG_SETTING_LINE | DEBUG_SETTING_FUNC);
+Debug Error =   Debug(std::cerr, "Error",   Color::RED,     DEBUG_SETTING_FILE | DEBUG_SETTING_LINE | DEBUG_SETTING_FUNC);
 
 Debug::Debug(std::ostream &flux, std::string prefix, Color color, char settings) :
     _flux(flux),
@@ -17,6 +19,20 @@ Debug::Debug(std::ostream &flux, std::string prefix, Color color, char settings)
 {
     addSetting(settings);
 }
+
+#else
+
+Debug Log =     Debug("Info",    DEBUG_SETTING_FILE | DEBUG_SETTING_LINE | DEBUG_SETTING_FUNC);
+Debug Warning = Debug("Warning", DEBUG_SETTING_FILE | DEBUG_SETTING_LINE | DEBUG_SETTING_FUNC);
+Debug Error =   Debug("Error",   DEBUG_SETTING_FILE | DEBUG_SETTING_LINE | DEBUG_SETTING_FUNC);
+
+Debug::Debug(std::string prefix, char settings) :
+    _prefix(prefix),
+    _flux(DEBUG_LOG_OUTPUT)
+{
+}
+
+#endif
 
 Debug::~Debug()
 {
@@ -50,7 +66,11 @@ void Debug::removeSetting(char value)
 
 std::string Debug::getHeader(const char *file, int line, const char *func)
 {
-    std::string header = '[' + getColor(this->_color) + this->_prefix + getColor(Color::NONE) + ']';
+    #if defined(GGL_DEBUG)
+        std::string header = '[' + getColor(this->_color) + this->_prefix + getColor(Color::NONE) + ']';
+    #else
+        std::string header = '[' + this->_prefix + ']';
+    #endif
 
     if (this->_settings == 0) {
         header = " - ";

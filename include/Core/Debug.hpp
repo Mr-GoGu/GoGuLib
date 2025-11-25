@@ -1,7 +1,7 @@
 
 #pragma once
 
-#include <ostream>
+#include <fstream>
 #include "Function.hpp"
 
 namespace GGL
@@ -13,14 +13,20 @@ namespace GGL
     #endif
     #define __FILENAME__        (strrchr(__FILE__, FOLDER_SEPARATOR) ? strrchr(__FILE__, FOLDER_SEPARATOR) + 1 : __FILE__)
 
-    #define DEBUG_SETTING_FILE    0b0001
-    #define DEBUG_SETTING_LINE    0b0010
-    #define DEBUG_SETTING_FUNC    0b0100
+    #define DEBUG_SETTING_FILE      0b0001
+    #define DEBUG_SETTING_LINE      0b0010
+    #define DEBUG_SETTING_FUNC      0b0100
+
+    #define DEBUG_LOG_OUTPUT        "log/output.log"
 
 class Debug
 {
     public:
-        Debug(std::ostream &flux, std::string prefix, Color color, char settings = 0);
+        #if defined(GGL_DEBUG)
+            Debug(std::ostream &flux, std::string prefix, Color color, char settings = 0);
+        #else
+            Debug(std::string prefix, char settings = 0);
+        #endif
         ~Debug();
 
         void addSetting(char value);
@@ -69,9 +75,14 @@ class Debug
     private:
         std::string getHeader(const char *file, int line, const char *func);
 
-        std::ostream &_flux;
+        #if defined(GGL_DEBUG)
+            std::ostream &_flux;
+            Color _color;
+        #else
+            std::ofstream _flux;
+        #endif
+
         std::string _prefix;
-        Color _color;
         char _settings;
 };
 

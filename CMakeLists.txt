@@ -35,6 +35,8 @@ set(LIB_SRC_FILES
 add_library(${LIB_NAME} ${LIB_SRC_FILES} ${INC_DIR}/GoGuLib.hpp)
 add_library(${LIB_NAME}::${LIB_NAME} ALIAS ${LIB_NAME})
 
+target_compile_definitions(${LIB_NAME} PUBLIC $<$<CONFIG:Debug>:GGL_DEBUG>)
+
 target_include_directories(${LIB_NAME}
     PUBLIC
         ${INC_DIR}
