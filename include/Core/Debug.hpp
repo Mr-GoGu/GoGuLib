@@ -17,7 +17,7 @@ namespace GGL
     #define DEBUG_SETTING_LINE      0b0010
     #define DEBUG_SETTING_FUNC      0b0100
 
-    #define DEBUG_LOG_OUTPUT        "log/output.log"
+    #define DEBUG_LOG_OUTPUT        "output.log"
 
 class Debug
 {
